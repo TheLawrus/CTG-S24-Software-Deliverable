@@ -14,6 +14,7 @@ Install pandas and Yahoo Finance API from requirements.txt
   - Volume
   - Adjusted Close
 - The data for each ticker is saved as a CSV file in `data/` such that each row is a date containing the above data for that day
+- For days where the market was closed, I filled in the previous day's valiues to ensure that dates were continuous in the CSV file
 
 ## Issues Encountered
 

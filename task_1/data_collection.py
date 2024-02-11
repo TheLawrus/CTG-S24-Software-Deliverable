@@ -22,13 +22,19 @@ def get_data():
             print(f'{ticker} has null values')
             data = data.fillna(method='ffill')
 
+        # fill in missing dates
+        idx = pd.date_range('2021-01-01', '2023-12-31')
+        data.index = pd.DatetimeIndex(data.index)
+        data = data.reindex(idx, method='ffill')
+        data.index.rename('Date', inplace=True)
+
         # ensure each ticker has the same number of data points
-        if len(data) != 753:
+        if len(data) != 1095:
             print(f'{ticker} has {len(data)} data points')
             continue
 
         data.to_csv(f'data/{ticker}.csv')
-        print(f'{ticker}: {len(data)}')
+
 
 if __name__ == '__main__':
     get_data()
